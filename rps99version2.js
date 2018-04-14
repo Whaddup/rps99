@@ -22,17 +22,34 @@ let playerTwoCounter = 0;
 let compMoveOneType, compMoveTwoType, compMoveThreeType;
 let compMoveOneValue, compMoveTwoValue, compMoveThreeValue;
 
+let arrayCompCatch = [];
+let arrayCompWords = []
 
 
 
 function setComputerMoves(){
 
-Math.random() * 4
+  for (x = 1; x < 4 ; x++){
+    arrayCatch.push((Math.floor(Math.random() * 3)))
+  }
 
 
+for (x = 0; x< arrayCatch.length; x++){
+switch(arrayCatch[x]){
+  case 0:
+   arrayWords.push("rock");
+   break;
+
+   case 1:
+   arrayWords.push("paper");
+   break;
 
 
-
+   case 2:
+   arrayWords.push("scissors");
+   break;
+  }
+}
 
 compMoveOneValue = Math.floor(Math.random() * 100)
 compMoveTwoValue = Math.floor(Math.random() * (99 - compMoveOneValue))
@@ -157,7 +174,7 @@ console.log("Round 1: 1Type&Value = 2Type&Value");
     console.log("Round 1: 1TypeValue < 2TypeValue")
   return playerTwoCounter;}
   }
-}  // getRoundOneWinner
+}
 
 
 
