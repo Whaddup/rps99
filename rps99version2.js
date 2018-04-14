@@ -23,48 +23,43 @@ let compMoveOneType, compMoveTwoType, compMoveThreeType;
 let compMoveOneValue, compMoveTwoValue, compMoveThreeValue;
 
 let arrayCompCatch = [];
-let arrayCompWords = []
+let arrayCompWords = [];
 
 
 
 function setComputerMoves(){
 
   for (x = 1; x < 4 ; x++){
-    arrayCatch.push((Math.floor(Math.random() * 3)))
+    arrayCompCatch.push((Math.floor(Math.random() * 3)))
   }
 
 
-for (x = 0; x< arrayCatch.length; x++){
-switch(arrayCatch[x]){
+for (x = 0; x< arrayCompCatch.length; x++){
+switch(arrayCompCatch[x]){
   case 0:
-   arrayWords.push("rock");
+   arrayCompWords.push("rock");
    break;
 
    case 1:
-   arrayWords.push("paper");
+   arrayCompWords.push("paper");
    break;
 
 
    case 2:
-   arrayWords.push("scissors");
+   arrayCompWords.push("scissors");
    break;
   }
 }
+
+compMoveOneType = arrayCompWords[0];
+compMoveTwoType = arrayCompWords[1];
+compMoveThreeType= arrayCompWords[2];
 
 compMoveOneValue = Math.floor(Math.random() * 100)
 compMoveTwoValue = Math.floor(Math.random() * (99 - compMoveOneValue))
 compMoveThreeValue = 99 - compMoveOneValue - compMoveTwoValue;
 
-
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -107,11 +102,16 @@ if (playerTwoMoveOneValue + playerTwoMoveTwoValue + playerTwoMoveThreeValue > 99
 
 
 function getRoundOneWinner(){
+console.log(`Round 1: P1Type: ${playerOneMoveOneType}`);
 console.log(`Round 1: P1Value: ${playerOneMoveOneValue}`);
+console.log(`Round 1: P2Type: ${playerTwoMoveOneType}`);
 console.log(`Round 1: P2Value: ${playerTwoMoveOneValue}`);
+console.log(`Round 1: CompType: ${compMoveOneType}`);
+console.log(`Round 1: CompValue: ${compMoveOneValue}`);
+
 
 if (playerOneMoveOneType === "rock"){
-  if (playerTwoMoveOneType === "paper"){
+  if (playerTwoMoveOneType === "paper" || compMoveOneType === "paper"){
     playerTwoCounter++
     console.log("Round 1: 1Rock < 2Paper")
     return playerTwoCounter;
@@ -120,7 +120,7 @@ if (playerOneMoveOneType === "rock"){
 
 
 if (playerOneMoveOneType === "rock"){
-  if (playerTwoMoveOneType === "scissors"){
+  if (playerTwoMoveOneType === "scissors" || compMoveOneType === "scissors" ){
     playerOneCounter++
     console.log("Round 1: 1Rock > 2Scissors")
     return playerOneCounter;
@@ -128,7 +128,7 @@ if (playerOneMoveOneType === "rock"){
 }
 
 if (playerOneMoveOneType === "paper"){
-  if (playerTwoMoveOneType === "rock"){
+  if (playerTwoMoveOneType === "rock" || compMoveOneType === "rock"){
     playerOneCounter++
     console.log("Round 1: 1Paper > 2Rock")
     return playerOneCounter;
@@ -137,7 +137,7 @@ if (playerOneMoveOneType === "paper"){
 
 
 if (playerOneMoveOneType === "paper"){
-  if (playerTwoMoveOneType === "scissors"){
+  if (playerTwoMoveOneType === "scissors" || compMoveOneType === "scissors"){
     playerTwoCounter++
     console.log("Round 1: 1Paper < 2Scissors")
     return playerTwoCounter;
@@ -146,7 +146,7 @@ if (playerOneMoveOneType === "paper"){
 
 
 if (playerOneMoveOneType === "scissors"){
-  if (playerTwoMoveOneType === "rock"){
+  if (playerTwoMoveOneType === "rock"|| compMoveOneType === "rock"){
     playerTwoCounter++
     console.log("Round 1: 1Scissors < 2Rock")
     return playerTwoCounter;
@@ -155,18 +155,18 @@ if (playerOneMoveOneType === "scissors"){
 
 
 if (playerOneMoveOneType === "scissors"){
-  if (playerTwoMoveOneType === "paper"){
+  if (playerTwoMoveOneType === "paper" || compMoveOneType === "paper"){
     playerOneCounter++
     console.log("Round 1: 1Scissors > 2Paper")
     return playerOneCounter;
   }
 }
 
-if (playerOneMoveOneType === playerTwoMoveOneType){
-  if (playerOneMoveOneValue === playerTwoMoveOneValue){
+if (playerOneMoveOneType === playerTwoMoveOneType || playerOneMoveOneType === compMoveOneType){
+  if (playerOneMoveOneValue === playerTwoMoveOneValue || playerOneMoveOneValue === compMoveOneValue){
 console.log("Round 1: 1Type&Value = 2Type&Value");
     return}
-  else if (playerOneMoveOneValue > playerTwoMoveOneValue){
+  else if (playerOneMoveOneValue > playerTwoMoveOneValue || playerOneMoveOneValue > compMoveOneValue){
   playerOneCounter++;
   console.log("Round 1: 1TypeValue > 2TypeValue")
   return playerOneCounter}
@@ -180,11 +180,15 @@ console.log("Round 1: 1Type&Value = 2Type&Value");
 
 
 function getRoundTwoWinner(){
+  console.log(`Round 2: P1Type: ${playerOneMoveTwoType}`);
   console.log(`Round 2: P1Value: ${playerOneMoveTwoValue}`);
+  console.log(`Round 2: P2Type: ${playerTwoMoveTwoType}`);
   console.log(`Round 2: P2Value: ${playerTwoMoveTwoValue}`);
+  console.log(`Round 2: CompType: ${compMoveTwoType}`);
+  console.log(`Round 2: CompValue: ${compMoveTwoValue}`);
 
   if (playerOneMoveTwoType === "rock"){
-    if (playerTwoMoveTwoType === "paper"){
+    if (playerTwoMoveTwoType === "paper" || compMoveTwoType === "paper"){
       playerTwoCounter++
       console.log("Round 2: 1Rock < 2Paper")
       return playerTwoCounter;
@@ -193,7 +197,7 @@ function getRoundTwoWinner(){
 
 
   if (playerOneMoveTwoType === "rock"){
-    if (playerTwoMoveTwoType === "scissors"){
+    if (playerTwoMoveTwoType === "scissors" || compMoveTwoType === "scissors"){
       playerOneCounter++;
       console.log("Round 2: 1Rock > 2Scissors")
       return playerOneCounter;
@@ -201,7 +205,7 @@ function getRoundTwoWinner(){
   }
 
   if (playerOneMoveTwoType === "paper"){
-    if (playerTwoMoveTwoType === "rock"){
+    if (playerTwoMoveTwoType === "rock" || compMoveTwoType === "rock"){
       playerOneCounter++;
       console.log("Round 2: 1Paper > 2Rock")
       return playerOneCounter;
@@ -210,7 +214,7 @@ function getRoundTwoWinner(){
 
 
   if (playerOneMoveTwoType === "paper"){
-    if (playerTwoMoveTwoType === "scissors"){
+    if (playerTwoMoveTwoType === "scissors" || compMoveTwoType === "scissors"){
       playerTwoCounter++;
       console.log("Round 2: 1Paper < 2Scissors")
       return playerTwoCounter;
@@ -219,7 +223,7 @@ function getRoundTwoWinner(){
 
 
   if (playerOneMoveTwoType === "scissors"){
-    if (playerTwoMoveTwoType === "rock"){
+    if (playerTwoMoveTwoType === "rock" || compMoveTwoType === "rock"){
       playerTwoCounter++;
       console.log("Round 2: 1Scissors < 2Rock")
       return playerTwoCounter;
@@ -228,18 +232,18 @@ function getRoundTwoWinner(){
 
 
   if (playerOneMoveTwoType === "scissors"){
-    if (playerTwoMoveTwoType === "paper"){
+    if (playerTwoMoveTwoType === "paper" || compMoveTwoType === "paper"){
       playerOneCounter++;
       console.log("Round 2: 1Scissors > 2Paper")
       return playerOneCounter;
     }
   }
 
-  if (playerOneMoveTwoType === playerTwoMoveTwoType){
-    if (playerOneMoveTwoValue === playerTwoMoveTwoValue){
+  if (playerOneMoveTwoType === playerTwoMoveTwoType || playerOneMoveTwoType === compMoveTwoType){
+    if (playerOneMoveTwoValue === playerTwoMoveTwoValue || playerOneMoveTwoValue === compMoveTwoValue){
 console.log("Round 2: 1Type&Value = 2Type&Value");
       return}
-    else if (playerOneMoveTwoValue > playerTwoMoveTwoValue){
+    else if (playerOneMoveTwoValue > playerTwoMoveTwoValue || playerOneMoveTwoValue > compMoveTwoValue){
     playerOneCounter++;
     console.log("Round 2: 1Type&Value > 2Type&Value");
     return playerOneCounter}
@@ -252,11 +256,15 @@ console.log("Round 2: 1Type&Value = 2Type&Value");
 
 
 function getRoundThreeWinner(){
+  console.log(`Round 3: P1Type: ${playerOneMoveThreeType}`);
   console.log(`Round 3: P1Value: ${playerOneMoveThreeValue}`);
+  console.log(`Round 3: P2Type: ${playerTwoMoveThreeType}`);
   console.log(`Round 3: P2Value: ${playerTwoMoveThreeValue}`);
+  console.log(`Round 3: CompType: ${compMoveThreeType}`);
+  console.log(`Round 3: CompValue: ${compMoveThreeValue}`);
 
   if (playerOneMoveThreeType === "rock"){
-    if (playerTwoMoveThreeType === "paper"){
+    if (playerTwoMoveThreeType === "paper" || compMoveThreeType === "paper"){
       playerTwoCounter++;
       console.log("Round 3: 1Rock < 2Paper");
       return playerTwoCounter;
@@ -265,7 +273,7 @@ function getRoundThreeWinner(){
 
 
   if (playerOneMoveThreeType === "rock"){
-    if (playerTwoMoveThreeType === "scissors"){
+    if (playerTwoMoveThreeType === "scissors" || compMoveThreeType === "scissors"){
       playerOneCounter++;
       console.log("Round 3: 1Rock > 2Scissors");
       return playerOneCounter;
@@ -273,7 +281,7 @@ function getRoundThreeWinner(){
   }
 
   if (playerOneMoveThreeType === "paper"){
-    if (playerTwoMoveThreeType === "rock"){
+    if (playerTwoMoveThreeType === "rock" || compMoveThreeType === "rock"){
       playerOneCounter++;
       console.log("Round 3: 1Paper > 2Rock");
       return playerOneCounter;
@@ -282,7 +290,7 @@ function getRoundThreeWinner(){
 
 
   if (playerOneMoveThreeType === "paper"){
-    if (playerTwoMoveThreeType === "scissors"){
+    if (playerTwoMoveThreeType === "scissors" || compMoveThreeType === "scissors"){
       playerTwoCounter++;
       console.log("Round 3: 1Paper < 2Scissors");
       return playerTwoCounter;
@@ -291,7 +299,7 @@ function getRoundThreeWinner(){
 
 
   if (playerOneMoveThreeType === "scissors"){
-    if (playerTwoMoveThreeType === "rock"){
+    if (playerTwoMoveThreeType === "rock" || compMoveThreeType === "rock"){
       playerTwoCounter++;
       console.log("Round 3: 1Scissors < 2Rock");
       return playerTwoCounter;
@@ -300,18 +308,18 @@ function getRoundThreeWinner(){
 
 
   if (playerOneMoveThreeType === "scissors"){
-    if (playerTwoMoveThreeType === "paper"){
+    if (playerTwoMoveThreeType === "paper" || compMoveThreeType === "paper"){
       playerOneCounter++;
       console.log("Round 3: 1Scissors > 2Paper");
       return playerOneCounter;
     }
   }
 
-  if (playerOneMoveThreeType === playerTwoMoveThreeType){
-    if (playerOneMoveThreeValue === playerTwoMoveThreeValue){
+  if (playerOneMoveThreeType === playerTwoMoveThreeType || playerOneMoveThreeType === compMoveThreeType){
+    if (playerOneMoveThreeValue === playerTwoMoveThreeValue || playerOneMoveThreeValue === compMoveThreeValue){
       console.log("Round 3: 1Type&Value = 2Type&Value");
       return}
-    else if (playerOneMoveThreeValue > playerTwoMoveThreeValue){
+    else if (playerOneMoveThreeValue > playerTwoMoveThreeValue || playerOneMoveThreeValue > compMoveThreeValue){
     playerOneCounter++;
     console.log("Round 3: 1Type&Value > 2Type&Value");
     return playerOneCounter}
@@ -332,7 +340,7 @@ function getGameWinner(){
   }
 
 if (playerOneCounter < playerTwoCounter){
-  return "Player Two Wins!"
+  return "Player Two / Comp Wins!"
 }
 
 if (playerOneCounter === playerTwoCounter){
@@ -343,7 +351,8 @@ if (playerOneCounter === playerTwoCounter){
 
 function activateGame(){
   setPlayerOneMoves("rock", "rock", "rock", 1,1,97)
-  setPlayerTwoMoves("paper", "paper", "paper",1,1,97)
+  //setPlayerTwoMoves("paper", "paper", "paper",1,1,97)
+  setComputerMoves();
   getRoundOneWinner();
   console.log("")
   getRoundTwoWinner()
